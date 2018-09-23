@@ -1,0 +1,4 @@
+bucket  = "skaws-terraform-state-dev"
+key     = "dynamodb/jenkins.tfstate"
+encrypt = true
+region  = "eu-west-2"

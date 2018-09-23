@@ -1,0 +1,5 @@
+environment = "dev"
+vpc_network = "10.0.0.0/16"
+dns = "true"
+name = "jenkins_vpc"
+role = "ci"
