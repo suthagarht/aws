@@ -1,0 +1,10 @@
+---
+:backends:
+  - yaml
+:yaml:
+  :datadir: "/vagrant/hieradata"
+:hierarchy:
+  - "virtual/%{::virtual}"
+  - "services/%{::service}/%{::role}"
+  - "%{::role}"
+  - "common"

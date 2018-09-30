@@ -1,0 +1,7 @@
+---
+pmc_nexus: 'https://v3-nexus.pmc.pearsondev.tech'
+
+# this will be deep merged
+profile_base::common_packages:
+  lsof:
+    ensure: present
