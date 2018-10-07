@@ -1,0 +1,41 @@
+{
+    "builders": [
+        {
+            "type": "docker",
+            "image": "centos",
+            "commit": "true",
+            "pull": "true"
+        }
+    ],
+
+    "provisioners": [
+      {
+        "type": "shell-local",
+        "scripts": [
+          "tools/centos_7.sh"
+        ]
+      },
+      {
+        "type": "puppet-masterless",
+        "manifest_file": "provisioners/puppet/production/manifests/site.pp",
+        "hiera_config_path": "provisioners/puppet/production/hiera.yaml",
+        "module_paths": [
+          "provisioners/puppet/production/modules"
+        ],
+        "facter": {"role":"base"},
+        "prevent_sudo": true,
+        "ignore_exit_codes": true
+      }
+    ],
+
+    "post-processors": [
+      [
+        {
+          "type": "docker-tag",
+          "repository": "suthagarht/develop",
+          "tag": "latest"
+        },
+        "docker-push"
+      ]
+    ]
+ }
