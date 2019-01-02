@@ -57,7 +57,7 @@ BACKEND_FILE="../../environment/${PROJECT}/${ENVIRONMENT}/${PROJECT}.backend"
 echo "data dir is " $DATA_DIR
 DATA_DIR="../../environment/${PROJECT}/${ENVIRONMENT}"
 COMMON_DATA="${DATA_DIR}/common.tfvars"
-SECRET_DATE="../../../secrets/${PROJECT}/secret.tfvars"
+SECRET_DATA="../../../secrets/${PROJECT}/secret.tfvars"
 
 # Run everything from the appropriate project
 cd "$PROJECT_DIR"
