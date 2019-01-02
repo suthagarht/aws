@@ -1,4 +1,5 @@
 secrets/.*
+secrets/privatelink/.*
 ./*/.terraform
 *.tfstate
 *.tfstate.*
