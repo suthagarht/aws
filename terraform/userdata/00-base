@@ -1,0 +1,6 @@
+#!/bin/env bash
+#
+# Snippet: base
+#
+
+echo "[$(date '+%H:%M:%S %d-%m-%Y')] START SNIPPET: base"

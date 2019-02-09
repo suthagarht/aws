@@ -36,7 +36,7 @@ variable "blue_vpc_network" {
 variable "green_vpc_network" {
   description = "This variable states the Green VPC network CIDR block."
   type        = "string"
-}                                                                     
+}
 
 variable "dns" {
   description = "This variable states whether to enable or disable host DNS."

@@ -1,4 +1,4 @@
-data "terraform_remote_state" "jenkins_remote_state" {
+data "terraform_remote_state" "privatelink_remote_state" {
   backend = "s3"
 
   config {

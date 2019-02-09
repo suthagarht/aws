@@ -40,3 +40,5 @@ green_subnet_availability_zones = {
   "green_subnet_a" = "eu-west-1a"
   "green_subnet_b" = "eu-west-1a"
 }
+
+user_data_snippets = [ "00-base", "00-web" ]
