@@ -1,0 +1,5 @@
+bucket  = "skaws-terraform-state-dev"
+key     = "k8-tf-aws/k8-tf-aws-vpc.tfstate"
+encrypt = true
+region  = "eu-west-2"
+dynamodb_table = "terraform-lock"
