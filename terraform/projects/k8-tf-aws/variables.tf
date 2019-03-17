@@ -19,6 +19,11 @@ variable "vpc_name" {
   description = "A name tag for the VPC"
 }
 
+variable "cluster_name" {
+  type        = "string"
+  description = "The EKS Cluster name"
+}
+
 variable "vpc_cidr" {
   type        = "string"
   description = "VPC IP address range, represented as a CIDR block"

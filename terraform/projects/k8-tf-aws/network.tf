@@ -28,13 +28,17 @@ module "k8_public_subnet" {
   subnet_cidrs          = "${var.public_subnet_cidrs}"
 }
 
-
 # Outputs
 # --------------------------------------------------------------
 
 output "vpc_id" {
   value       = "${module.vpc.vpc_id}"
   description = "The ID of the VPC"
+}
+
+output "subnet_ids" {
+  value       = "${module.k8_public_subnet.subnet_ids}"
+  description = "List containing the IDs of the created subnets."
 }
 
 output "vpc_cidr" {

@@ -66,7 +66,7 @@ function init() {
   rm -rf .terraform && \
   rm -rf terraform.tfstate.backup && \
   terraform init \
-            -backend-config "$BACKEND_FILE"
+            -backend-config="$BACKEND_FILE"
 }
 
 
@@ -85,4 +85,4 @@ do
   fi
 done
 
-eval "$TO_RUN $@"
+eval "$TO_RUN $*"

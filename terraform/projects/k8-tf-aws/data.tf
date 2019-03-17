@@ -7,3 +7,7 @@ data "terraform_remote_state" "infra_vpc" {
     region = "${var.aws_region}"
   }
 }
+
+data "external" "myipaddr" {
+  program = ["bash", "-c", "curl -s 'https://ipinfo.io/json'"]
+}

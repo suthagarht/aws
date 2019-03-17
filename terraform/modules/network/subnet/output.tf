@@ -1,4 +1,4 @@
-output "subnet_id" {
-  value       = "${aws_subnet.subnet.id}"
-  description = "The ID of the subnet."
+output "subnet_ids" {
+  value       = ["${aws_subnet.subnet.*.id}"]
+  description = "List containing the IDs of the created subnets."
 }
