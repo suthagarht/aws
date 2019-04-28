@@ -23,3 +23,8 @@ module "k8-cluster-node-sg" {
     Env = "Dev"
   }
 }
+
+output "node_sg_ids" {
+  value       = "${module.k8-cluster-node-sg.sg_ids}"
+  description = "k8 cluster node SG IDs"
+}

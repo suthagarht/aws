@@ -1,5 +1,6 @@
 aws_region = "eu-west-2"
 stackname = "blue"
+key_name = "dev00"
 vpc_name = "k8-blue-vpc"
 cluster_name = "k8-cluster"
 vpc_cidr = "10.0.0.0/16"

@@ -19,6 +19,11 @@ variable "vpc_name" {
   description = "A name tag for the VPC"
 }
 
+variable "key_name" {
+  type        = "string"
+  description = "The SSH ket pair name"
+}
+
 variable "cluster_name" {
   type        = "string"
   description = "The EKS Cluster name"

@@ -11,3 +11,19 @@ data "terraform_remote_state" "infra_vpc" {
 data "external" "myipaddr" {
   program = ["bash", "-c", "curl -s 'https://ipinfo.io/json'"]
 }
+
+# Get an AMI ID to use for the worker nodes
+data "aws_ami" "eks-worker" {
+  filter {
+    name   = "name"
+    values = ["amazon-eks-node-*"]
+  }
+
+  filter {
+    name   = "architecture"
+    values = ["x86_64"]
+  }
+
+  most_recent = true
+  owners      = ["602401143452"] # Amazon EKS AMI Account ID
+}

@@ -44,7 +44,9 @@ if [[ $HELP = '1' ]]; then
 fi
 
 # un-shift all the parsed arguments
-shift $(expr $OPTIND - 1)
+# shift $(expr $OPTIND - 1)
+# un-shift all the parsed arguments
+shift "$((OPTIND - 1))"
 
 # Set up our locations
 TERRAFORM_DIR='./terraform'
@@ -84,5 +86,5 @@ do
     TO_RUN="$TO_RUN -var-file $TFVAR_FILE"
   fi
 done
-
+echo "$TO_RUN $*"
 eval "$TO_RUN $*"
