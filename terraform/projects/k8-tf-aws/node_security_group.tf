@@ -7,7 +7,6 @@ module "k8-cluster-node-sg" {
   create_sg           = true
   create_ingress_rule = true
   create_egress_rule  = false
-  ingress_cidr_blocks = ["0.0.0.0/0"]
 
   ingress_rules = [
     "k8-cluster-node-ingress-self",
@@ -15,8 +14,8 @@ module "k8-cluster-node-sg" {
   ]
 
   rules = {
-    k8-cluster-node-ingress-self    = [0, 65535, "all", "k8-cluster-node-ingress-self"]
-    k8-cluster-node-ingress-cluster = [1025, 65535, "tcp", "k8-cluster-node-ingress-cluster"]
+    k8-cluster-node-ingress-self    = [0, 65535, "all", "k8-cluster-node-ingress-self", "0.0.0.0/0"]
+    k8-cluster-node-ingress-cluster = [1025, 65535, "tcp", "k8-cluster-node-ingress-cluster", "0.0.0.0/0"]
   }
 
   tags = {

@@ -43,3 +43,8 @@ variable "public_subnet_cidrs" {
   type        = "list"
   description = "List containing public subnet names and CIDR associated"
 }
+
+variable "bootstrap_extra_args" {
+  type    = "string"
+  default = ""
+}

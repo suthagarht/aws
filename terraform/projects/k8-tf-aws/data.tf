@@ -27,3 +27,15 @@ data "aws_ami" "eks-worker" {
   most_recent = true
   owners      = ["602401143452"] # Amazon EKS AMI Account ID
 }
+
+# Generate AWS CIDR Block
+data "aws_ip_ranges" "aws_repo_cidr" {
+  regions  = ["${var.aws_region}"]
+  services = ["amazon"]
+}
+
+# Generate AWS EC2 CIDR Block
+data "aws_ip_ranges" "aws_ec2_cidr" {
+  regions  = ["${var.aws_region}"]
+  services = ["ec2"]
+}

@@ -51,17 +51,17 @@ variable "ingress_rules" {
   default     = []
 }
 
-variable "ingress_cidr_blocks" {
-  description = "CIDR Blocks in a list."
-  type        = "list"
-  default     = []
-}
-
-variable "egress_cidr_blocks" {
-  description = "CIDR Blocks in a list."
-  type        = "list"
-  default     = []
-}
+#variable "ingress_cidr_blocks" {
+#  description = "CIDR Blocks in a list."
+#  type        = "list"
+#  default     = []
+#}
+#
+#variable "egress_cidr_blocks" {
+#  description = "CIDR Blocks in a list."
+#  type        = "list"
+#  default     = []
+#}
 
 variable "rules" {
   description = "A map consisting of all the rules"

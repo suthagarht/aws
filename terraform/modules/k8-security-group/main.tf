@@ -48,7 +48,8 @@ resource "aws_security_group_rule" "sg_ingress_rule" {
   security_group_id = "${aws_security_group.sg.id}"
   type              = "ingress"
 
-  cidr_blocks = ["${var.ingress_cidr_blocks}"]
+  #cidr_blocks = ["${var.ingress_cidr_blocks}"]
+  cidr_blocks = ["${element(var.rules[var.ingress_rules[count.index]], 4)}"]
   description = "${element(var.rules[var.ingress_rules[count.index]], 3)}"
 
   from_port = "${element(var.rules[var.ingress_rules[count.index]], 0)}"
@@ -74,7 +75,8 @@ resource "aws_security_group_rule" "sg_egress_rule" {
   security_group_id = "${aws_security_group.sg.id}"
   type              = "egress"
 
-  cidr_blocks = ["${var.egress_cidr_blocks}"]
+  #cidr_blocks = ["${var.egress_cidr_blocks}"]
+  cidr_blocks = ["${element(var.rules[var.egress_rules[count.index]], 4)}"]
   description = "${element(var.rules[var.egress_rules[count.index]], 3)}"
 
   from_port = "${element(var.rules[var.egress_rules[count.index]], 0)}"
