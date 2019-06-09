@@ -23,7 +23,7 @@ data "aws_region" "current" {}
 # data:
 #   mapRoles: |
 #     - rolearn: ${aws_iam_role.k8-cluster-node-iam-role.arn}
-#       username: system:node:"$$(hostname)"
+#       username: system:node:"{{EC2PrivateDNSName}}"
 #       groups:
 #         - system:bootstrappers
 #         - system:nodes
@@ -46,7 +46,8 @@ resource "aws_launch_configuration" "k8-cluster-node-lc" {
   security_groups = [
     "${data.terraform_remote_state.infra_vpc.node_sg_ids}",
     "${aws_security_group.aws-repo-sg.id}",
-    "${aws_security_group.aws-ec2-cidr-sg.id}",
+    #"${aws_security_group.aws-ec2-cidr-sg.id}",
+    #"${aws_security_group.aws-ec2-endpoint-sg.id}",
   ]
 
   #  user_data_base64 = "${base64encode(local.k8-cluster-node-userdata)}"

@@ -37,6 +37,18 @@ resource "aws_security_group_rule" "k8-cluster-ingress-workstation-https" {
   type              = "ingress"
 }
 
+# Allow nodes to communicate to cluster.
+resource "aws_security_group_rule" "k8-cluster-ingress-node-https" {
+  cidr_blocks       = ["${var.public_subnet_cidrs}"]
+  description       = "Allow Cluster Nodes to communicate with the cluster API Server"
+  from_port         = 443
+  protocol          = "tcp"
+  security_group_id = "${aws_security_group.k8-cluster-sg.id}"
+  to_port           = 443
+  type              = "ingress"
+}
+
+
 ############################################################
 /*
 *                END REMOTE ACCESS
