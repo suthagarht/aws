@@ -3,6 +3,7 @@
 
 2. Do subnets
 ./terraform/tools/build.sh -c apply  -d k8-tf-aws -e dev -p k8-tf-aws -- --target=module.k8_public_subnet
+./terraform/tools/build.sh -c apply  -d k8-tf-aws -e dev -p k8-tf-aws -- --target=module.k8_private_subnet
 
 
 3. Do node security group
