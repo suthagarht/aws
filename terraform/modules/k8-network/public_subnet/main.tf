@@ -58,7 +58,6 @@ resource "aws_subnet" "public" {
   cidr_block        = "${element(var.subnet_cidrs, count.index)}"
   availability_zone = "${data.aws_availability_zones.available.names[count.index]}"
 
-
   #tags = "${merge(var.default_tags, map("Name", element(var.subnet_cidrs, count.index)))}"
   tags = "${merge(var.default_tags, map("Name", format("k8-subnet-%s", data.aws_availability_zones.available.names[count.index])))}"
 
@@ -78,12 +77,17 @@ resource "aws_route_table_association" "public" {
 # Outputs
 #--------------------------------------------------------------
 
-output "subnet_ids" {
+output "public_subnet_ids" {
   value       = ["${aws_subnet.public.*.id}"]
   description = "List containing the IDs of the created subnets."
 }
 
-output "subnet_names_ids_map" {
+output "public_subnet_names_ids_map" {
   value       = "${zipmap(aws_subnet.public.*.tags.Name, aws_subnet.public.*.id)}"
   description = "Map containing the pair name-id for each subnet created."
+}
+
+output "public_subnet_names" {
+  value       = ["${aws_subnet.public.*.tags.Name}"]
+  description = "List containing public subnet names."
 }

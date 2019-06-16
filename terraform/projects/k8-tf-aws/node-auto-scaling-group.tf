@@ -4,7 +4,7 @@ resource "aws_autoscaling_group" "k8-cluster-asg" {
   max_size             = 2
   min_size             = 1
   name                 = "k8-cluster-node-asg"
-  vpc_zone_identifier  = ["${data.terraform_remote_state.infra_vpc.subnet_ids}"]
+  vpc_zone_identifier  = ["${data.terraform_remote_state.infra_vpc.private_subnet_ids}"]
 
   tag {
     key                 = "Name"

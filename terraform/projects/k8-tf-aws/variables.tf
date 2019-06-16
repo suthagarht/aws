@@ -44,7 +44,18 @@ variable "public_subnet_cidrs" {
   description = "List containing public subnet names and CIDR associated"
 }
 
+variable "private_subnet_cidrs" {
+  type        = "list"
+  description = "List containing private subnet names and CIDR associated"
+}
+
+
 variable "bootstrap_extra_args" {
   type    = "string"
   default = ""
 }
+
+#variable "public_subnet_nat_gateway_enable" {
+#  type        = "list"
+#  description = "List of public subnet names where we want to create a NAT Gateway"
+#}

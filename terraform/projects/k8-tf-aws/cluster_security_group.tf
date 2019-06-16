@@ -48,7 +48,6 @@ resource "aws_security_group_rule" "k8-cluster-ingress-node-https" {
   type              = "ingress"
 }
 
-
 ############################################################
 /*
 *                END REMOTE ACCESS

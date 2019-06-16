@@ -1,0 +1,15 @@
+1. Do VPC
+./terraform/tools/build.sh -c apply  -d k8-tf-aws -e dev -p k8-tf-aws -- --target=module.vpc
+
+2. Do subnets
+./terraform/tools/build.sh -c apply  -d k8-tf-aws -e dev -p k8-tf-aws -- --target=module.k8_public_subnet
+
+
+3. Do node security group
+./terraform/tools/build.sh -c apply  -d k8-tf-aws -e dev -p k8-tf-aws -- --target=module.k8-cluster-node-sg
+
+
+
+# Docs
+https://github.com/cloudposse/terraform-aws-eks-workers    --- The worker node join
+https://docs.aws.amazon.com/eks/latest/userguide/add-user-role.html -- join

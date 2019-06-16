@@ -17,12 +17,9 @@ resource "aws_security_group" "aws-repo-sg" {
   }
 
   tags = {
-    Name       = "aws-repo-sg"
+    Name = "aws-repo-sg"
   }
 }
-
-
-
 
 ## The below works however. There is an ever changing list
 ## Also we will make the nodes priivate
@@ -77,3 +74,4 @@ resource "aws_security_group" "aws-repo-sg" {
 #    Name = "aws-ec2-endpoint-sg"
 #  }
 #}
+

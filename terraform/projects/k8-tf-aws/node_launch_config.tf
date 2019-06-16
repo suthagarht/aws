@@ -46,14 +46,14 @@ resource "aws_launch_configuration" "k8-cluster-node-lc" {
   security_groups = [
     "${data.terraform_remote_state.infra_vpc.node_sg_ids}",
     "${aws_security_group.aws-repo-sg.id}",
-    #"${aws_security_group.aws-ec2-cidr-sg.id}",
-    #"${aws_security_group.aws-ec2-endpoint-sg.id}",
   ]
+
+  #"${aws_security_group.aws-ec2-cidr-sg.id}",
+  #"${aws_security_group.aws-ec2-endpoint-sg.id}",
 
   #  user_data_base64 = "${base64encode(local.k8-cluster-node-userdata)}"
   # user_data = "${local.k8-cluster-node-userdata}"
   user_data_base64 = "${base64encode(join("", data.template_file.userdata.*.rendered))}"
-
   lifecycle {
     create_before_destroy = true
   }
