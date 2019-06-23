@@ -1,5 +1,5 @@
 ### IAM Policy
--------------------------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------------------------
 
 ## Template file
 data "template_file" "policy_template" {
@@ -7,7 +7,7 @@ data "template_file" "policy_template" {
 }
 
 resource "aws_iam_role" "eks-iam-role" {
-  name = "k8-cluster"
+  name               = "k8-cluster"
   assume_role_policy = "${dta.template_file.policy_template.rendered}"
 }
 

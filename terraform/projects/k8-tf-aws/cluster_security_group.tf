@@ -8,7 +8,7 @@
 resource "aws_security_group" "k8-cluster-sg" {
   name        = "k8-eks-cluster-sg"
   description = "Cluster communication with worker nodes"
-  vpc_id      = "${data.terraform_remote_state.infra_vpc.vpc_id}"
+  vpc_id      = "${data.terraform_remote_state.infra_vpc.k8_cluster_vpc_id}"
 
   egress {
     from_port   = 0

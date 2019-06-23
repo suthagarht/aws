@@ -64,7 +64,6 @@ resource "aws_subnet" "private" {
   cidr_block        = "${element(var.subnet_cidrs, count.index)}"
   availability_zone = "${data.aws_availability_zones.available.names[count.index]}"
 
-
   #tags = "${merge(var.default_tags, map("Name", element(var.subnet_cidrs, count.index)))}"
   tags = "${merge(var.default_tags, map("Name", format("k8-private-subnet-%s", data.aws_availability_zones.available.names[count.index])))}"
 
@@ -87,13 +86,11 @@ resource "aws_route_table" "private" {
   }
 }
 
-
 resource "aws_route_table_association" "private" {
   count          = "${length(var.subnet_cidrs)}"
   subnet_id      = "${element(aws_subnet.private.*.id, count.index)}"
   route_table_id = "${element(aws_route_table.private.*.id, count.index)}"
 }
-
 
 # NAT
 resource "aws_route" "nat" {
@@ -102,7 +99,6 @@ resource "aws_route" "nat" {
   destination_cidr_block = "0.0.0.0/0"
   nat_gateway_id         = "${element(var.subnet_nat_gateways, count.index)}"
 }
-
 
 # Outputs
 #--------------------------------------------------------------

@@ -1,6 +1,6 @@
 resource "aws_security_group" "aws-repo-sg" {
   name   = "aws-repo-sg"
-  vpc_id = "${data.terraform_remote_state.infra_vpc.vpc_id}"
+  vpc_id = "${data.terraform_remote_state.infra_vpc.k8_cluster_vpc_id}"
 
   egress {
     from_port   = "0"
@@ -25,7 +25,7 @@ resource "aws_security_group" "aws-repo-sg" {
 ## Also we will make the nodes priivate
 #resource "aws_security_group" "aws-repo-sg" {
 #  name   = "aws-repo-sg"
-#  vpc_id = "${data.terraform_remote_state.infra_vpc.vpc_id}"
+#  vpc_id = "${data.terraform_remote_state.infra_vpc.k8_cluster_vpc_id}"
 #
 #  egress {
 #    from_port   = "0"
@@ -43,7 +43,7 @@ resource "aws_security_group" "aws-repo-sg" {
 #
 #resource "aws_security_group" "aws-ec2-cidr-sg" {
 #  name   = "aws-ec2-cidr-sg"
-#  vpc_id = "${data.terraform_remote_state.infra_vpc.vpc_id}"
+#  vpc_id = "${data.terraform_remote_state.infra_vpc.k8_cluster_vpc_id}"
 #
 #  egress {
 #    from_port   = "0"
@@ -61,7 +61,7 @@ resource "aws_security_group" "aws-repo-sg" {
 #
 #resource "aws_security_group" "aws-ec2-endpoint-sg" {
 #  name   = "aws-ec2-endpoint-sg"
-#  vpc_id = "${data.terraform_remote_state.infra_vpc.vpc_id}"
+#  vpc_id = "${data.terraform_remote_state.infra_vpc.k8_cluster_vpc_id}"
 #
 #  egress {
 #    from_port   = "0"

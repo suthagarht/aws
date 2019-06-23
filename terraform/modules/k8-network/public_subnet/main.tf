@@ -40,9 +40,19 @@ variable "route_table_public_id" {
   description = "The ID of the route table in the VPC"
 }
 
+variable "internet_gateway_id" {
+  type        = "string"
+  description = "The VPC Internet Gateway ID."
+}
+
 variable "subnet_cidrs" {
   type        = "list"
   description = "A list of the CIDRs for the subnets being created."
+}
+
+variable "component" {
+  type        = "string"
+  description = "The general component name. For example 'subnet-a belongs to bastion'"
 }
 
 # Resources
@@ -59,7 +69,7 @@ resource "aws_subnet" "public" {
   availability_zone = "${data.aws_availability_zones.available.names[count.index]}"
 
   #tags = "${merge(var.default_tags, map("Name", element(var.subnet_cidrs, count.index)))}"
-  tags = "${merge(var.default_tags, map("Name", format("k8-subnet-%s", data.aws_availability_zones.available.names[count.index])))}"
+  tags = "${merge(var.default_tags, map("Name", format("%s-public-subnet-%s",var.component, data.aws_availability_zones.available.names[count.index])))}"
 
   lifecycle {
     create_before_destroy = true
@@ -68,10 +78,29 @@ resource "aws_subnet" "public" {
   map_public_ip_on_launch = true
 }
 
+# Routing table
+resource "aws_route_table" "public" {
+  count  = "${length(var.subnet_cidrs)}"
+  vpc_id = "${var.vpc_id}"
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = "${var.internet_gateway_id}"
+  }
+
+  tags = "${merge(var.default_tags, map("Name", format("k8-public-subnet-%s", data.aws_availability_zones.available.names[count.index])))}"
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
 resource "aws_route_table_association" "public" {
-  count          = "${length(var.subnet_cidrs)}"
-  subnet_id      = "${element(aws_subnet.public.*.id, count.index)}"
-  route_table_id = "${var.route_table_public_id}"
+  count     = "${length(var.subnet_cidrs)}"
+  subnet_id = "${element(aws_subnet.public.*.id, count.index)}"
+
+  #route_table_id = "${var.route_table_public_id}"
+  route_table_id = "${element(aws_route_table.public.*.id, count.index)}"
 }
 
 # Outputs

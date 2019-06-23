@@ -4,7 +4,7 @@ resource "aws_eks_cluster" "k8-cluster" {
 
   vpc_config {
     security_group_ids = ["${aws_security_group.k8-cluster-sg.id}"]
-    subnet_ids         = ["${data.terraform_remote_state.infra_vpc.public_subnet_ids}"]
+    subnet_ids         = ["${data.terraform_remote_state.infra_vpc.k8_cluster_public_subnet_ids}"]
   }
 
   depends_on = [

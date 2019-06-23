@@ -3,7 +3,7 @@ module "k8-cluster-node-sg" {
   sg_name             = "k8-cluster-node-security-group"
   sg_description      = "Security Group for all nodes in the cluster."
   sg_tag_name         = "K8_Node_SG"
-  vpc_id              = "${data.terraform_remote_state.infra_vpc.vpc_id}"
+  vpc_id              = "${data.terraform_remote_state.infra_vpc.k8_cluster_vpc_id}"
   create_sg           = true
   create_ingress_rule = true
   create_egress_rule  = false

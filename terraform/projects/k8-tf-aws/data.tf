@@ -36,6 +36,31 @@ data "aws_ami" "eks-worker" {
   owners      = ["602401143452"] # Amazon EKS AMI Account ID
 }
 
+data "aws_ami" "latest_ubuntu" {
+  most_recent = true
+  owners      = ["099720109477"]
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  filter {
+    name   = "owner-id"
+    values = ["099720109477"]
+  }
+
+  filter {
+    name   = "architecture"
+    values = ["x86_64"]
+  }
+}
+
 # Generate AWS CIDR Block
 data "aws_ip_ranges" "aws_repo_cidr" {
   regions  = ["${var.aws_region}"]

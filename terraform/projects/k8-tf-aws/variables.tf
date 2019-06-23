@@ -19,6 +19,11 @@ variable "vpc_name" {
   description = "A name tag for the VPC"
 }
 
+variable "bastion_vpc_name" {
+  type        = "string"
+  description = "A name tag for the Bastion VPC"
+}
+
 variable "key_name" {
   type        = "string"
   description = "The SSH ket pair name"
@@ -34,6 +39,11 @@ variable "vpc_cidr" {
   description = "VPC IP address range, represented as a CIDR block"
 }
 
+variable "bastion_vpc_cidr" {
+  type        = "string"
+  description = "Bastion VPC IP address range, represented as a CIDR block"
+}
+
 variable "remote_state_bucket" {
   type        = "string"
   description = "S3 bucket we store our terraform state in"
@@ -44,11 +54,15 @@ variable "public_subnet_cidrs" {
   description = "List containing public subnet names and CIDR associated"
 }
 
+variable "bastion_public_subnet_cidrs" {
+  type        = "list"
+  description = "List containing bastion public subnet names and CIDR associated"
+}
+
 variable "private_subnet_cidrs" {
   type        = "list"
   description = "List containing private subnet names and CIDR associated"
 }
-
 
 variable "bootstrap_extra_args" {
   type    = "string"
@@ -59,3 +73,4 @@ variable "bootstrap_extra_args" {
 #  type        = "list"
 #  description = "List of public subnet names where we want to create a NAT Gateway"
 #}
+

@@ -1,11 +1,11 @@
 ### The EKS Cluster
------------------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------
 
 resource "aws_eks_cluster" "demo" {
-  name            = "${var.cluster-name}"
-  role_arn        = "${aws_iam_role.eks-iam-role.arn}"
+  name     = "${var.cluster-name}"
+  role_arn = "${aws_iam_role.eks-iam-role.arn}"
 
-    vpc_config {
+  vpc_config {
     subnet_ids = ["${aws_subnet.default.*.id}"]
   }
 
