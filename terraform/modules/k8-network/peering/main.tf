@@ -16,30 +16,30 @@ variable "peering_acceptance" {
   default     = true
 }
 
-variable "target_route_table" {
-  type        = "string"
-  description = "The route table ID at the target VPC."
-}
-
-variable "target_cidr" {
-  type        = "string"
-  description = "The CIDR of the target VPC."
-}
+#variable "target_route_table" {
+#  type        = "string"
+#  description = "The route table ID at the target VPC."
+#}
+#
+#variable "target_cidr" {
+#  type        = "string"
+#  description = "The CIDR of the target VPC."
+#}
 
 variable "peering_connection_id" {
   type        = "string"
   description = "The peering connection ID."
 }
 
-variable "source_route_table" {
-  type        = "string"
-  description = "The route table ID at the source VPC."
-}
-
-variable "source_cidr" {
-  type        = "string"
-  description = "The CIDR of the source VPC."
-}
+#variable "source_route_table" {
+#  type        = "string"
+#  description = "The route table ID at the source VPC."
+#}
+#
+#variable "source_cidr" {
+#  type        = "string"
+#  description = "The CIDR of the source VPC."
+#}
 
 # Resources
 #--------------------------------------------------------------
@@ -50,19 +50,19 @@ resource "aws_vpc_peering_connection" "peering" {
   auto_accept = "${var.peering_acceptance}"
 }
 
-# Add routes at the target after creating a peering connection
-resource "aws_route" "target_route" {
-  route_table_id            = "${var.target_route_table}"
-  destination_cidr_block    = "${var.source_cidr}"           # Set a route to source in the target
-  vpc_peering_connection_id = "${var.peering_connection_id}"
-}
-
-# Add routes at the source VPC
-resource "aws_route" "source_route" {
-  route_table_id            = "${var.source_route_table}"
-  destination_cidr_block    = "${var.target_cidr}"           # Set a route to target in source
-  vpc_peering_connection_id = "${var.peering_connection_id}"
-}
+## Add routes at the target after creating a peering connection
+#resource "aws_route" "target_route" {
+#  route_table_id            = "${var.target_route_table}"
+#  destination_cidr_block    = "${var.source_cidr}"           # Set a route to source in the target
+#  vpc_peering_connection_id = "${var.peering_connection_id}"
+#}
+#
+## Add routes at the source VPC
+#resource "aws_route" "source_route" {
+#  route_table_id            = "${var.source_route_table}"
+#  destination_cidr_block    = "${var.target_cidr}"           # Set a route to target in source
+#  vpc_peering_connection_id = "${var.peering_connection_id}"
+#}
 
 # Output
 #--------------------------------------------------------------

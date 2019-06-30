@@ -12,13 +12,13 @@ data "external" "myipaddr" {
   program = ["bash", "-c", "curl -s 'https://ipinfo.io/json'"]
 }
 
-data "external" "aws-ec2-endpoint" {
-  #program = ["bash", "-c", "dig ec2.${var.aws_region}.amazonaws.com +short A"]
-  #program = ["bash", "-c", "curl -s http://ip-api.com/json/ec2.eu-west-2.amazonaws.com"]
-  program = ["bash", "-c", "curl -s http://ip-api.com/json/ec2.${var.aws_region}.amazonaws.com?fields=query"]
+#data "external" "aws-ec2-endpoint" {
+#program = ["bash", "-c", "dig ec2.${var.aws_region}.amazonaws.com +short A"]
+#program = ["bash", "-c", "curl -s http://ip-api.com/json/ec2.eu-west-2.amazonaws.com"]
+# program = ["bash", "-c", "curl -s http://ip-api.com/json/ec2.${var.aws_region}.amazonaws.com?fields=query"]
 
-  #program = ["bash", "-c", "curl -s https://dns.google.com/resolve?name=ec2.eu-west-2.amazonaws.com&type=A"]
-}
+#program = ["bash", "-c", "curl -s https://dns.google.com/resolve?name=ec2.eu-west-2.amazonaws.com&type=A"]
+#}
 
 # Get an AMI ID to use for the worker nodes
 data "aws_ami" "eks-worker" {

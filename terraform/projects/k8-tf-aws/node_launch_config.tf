@@ -35,7 +35,7 @@ data "aws_region" "current" {}
 # }
 
 resource "aws_launch_configuration" "k8-cluster-node-lc" {
-  associate_public_ip_address = true
+  associate_public_ip_address = false
   iam_instance_profile        = "${aws_iam_instance_profile.k8-cluster-node-profile.name}"
   image_id                    = "${data.aws_ami.eks-worker.id}"
   instance_type               = "m4.large"

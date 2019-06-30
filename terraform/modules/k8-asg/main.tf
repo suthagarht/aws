@@ -72,11 +72,12 @@ resource "aws_autoscaling_group" "asg" {
 
 # Launch Config
 resource "aws_launch_configuration" "launch_config" {
-  name            = "${var.launch_config_name}"
-  image_id        = "${var.ami_id}"
-  instance_type   = "${var.instance_type}"
-  security_groups = ["${var.security_groups}"]
-  key_name        = "${var.key_name}"
+  name                        = "${var.launch_config_name}"
+  image_id                    = "${var.ami_id}"
+  instance_type               = "${var.instance_type}"
+  security_groups             = ["${var.security_groups}"]
+  key_name                    = "${var.key_name}"
+  associate_public_ip_address = "false"
 }
 
 # Output

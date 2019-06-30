@@ -120,3 +120,8 @@ output "public_subnet_names" {
   value       = ["${aws_subnet.public.*.tags.Name}"]
   description = "List containing public subnet names."
 }
+
+output "public_subnet_route_table_ids" {
+  value       = ["${aws_route_table.public.*.id}"]
+  description = "List of route_table IDs"
+}

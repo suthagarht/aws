@@ -73,14 +73,15 @@ module "k8_private_subnet" {
 
 # EKS Bastion to Private Peer 
 module "bastion_cluster_peer" {
-  source                = "../../modules/k8-network/peering"
-  target_vpc_id         = "${module.vpc.vpc_id}"
-  source_vpc_id         = "${module.bastion_vpc.vpc_id}"
-  peering_acceptance    = true
-  target_route_table    = "${module.vpc.route_table_public_id}"
-  source_route_table    = "${module.bastion_vpc.route_table_public_id}"
-  target_cidr           = "${module.vpc.vpc_cidr}"
-  source_cidr           = "${module.bastion_vpc.vpc_cidr}"
+  source             = "../../modules/k8-network/peering"
+  target_vpc_id      = "${module.vpc.vpc_id}"
+  source_vpc_id      = "${module.bastion_vpc.vpc_id}"
+  peering_acceptance = true
+
+  #  target_route_table    = "${module.vpc.route_table_public_id}"
+  #  source_route_table    = "${module.bastion_vpc.route_table_public_id}"
+  #  target_cidr           = "${module.vpc.vpc_cidr}"
+  #  source_cidr           = "${module.bastion_vpc.vpc_cidr}"
   peering_connection_id = "${module.bastion_cluster_peer.peering_id}"
 }
 
@@ -96,7 +97,6 @@ output "bastion_vpc_id" {
   value       = "${module.bastion_vpc.vpc_id}"
   description = "The ID of the Bastion VPC."
 }
-
 
 output "k8_cluster_public_subnet_ids" {
   value       = "${module.k8_public_subnet.public_subnet_ids}"
