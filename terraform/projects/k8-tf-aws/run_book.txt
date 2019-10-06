@@ -25,11 +25,11 @@ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.9.1/Documen
 /etc/cni/net.d/10-flannel.conf
 
 {
-"name": "cbr0",
-"type": "flannel",
-"delegate": {
-"isDefaultGateway": true
-}
+  "name": "cbr0",
+  "type": "flannel",
+  "delegate": {
+    "isDefaultGateway": true
+  }
 }
 ```
 
