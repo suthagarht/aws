@@ -61,6 +61,32 @@ data "aws_ami" "latest_ubuntu" {
   }
 }
 
+data "aws_ami" "latest_aws_ami" {
+  most_recent = true
+  owners      = ["137112412989"]
+
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm-*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  filter {
+    name   = "owner-id"
+    values = ["137112412989"]
+  }
+
+  filter {
+    name   = "architecture"
+    values = ["x86_64"]
+  }
+}
+
+
 # Generate AWS CIDR Block
 data "aws_ip_ranges" "aws_repo_cidr" {
   regions  = ["${var.aws_region}"]

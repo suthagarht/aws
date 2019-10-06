@@ -35,7 +35,7 @@ module "k8-cluster-bastion-asg" {
   min_size           = "1"
   asg_subnets        = "${data.terraform_remote_state.infra_vpc.bastion_public_subnet_ids}"
   launch_config_name = "k8-bastion-lc"
-  ami_id             = "${data.aws_ami.latest_ubuntu.id}"
+  ami_id             = "${data.aws_ami.latest_aws_ami.id}"
   instance_type      = "t2.micro"
   key_name           = "${var.key_name}"
   security_groups    = "${module.k8-cluster-bastion-sg.sg_ids}"
